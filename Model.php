@@ -13,9 +13,9 @@
 		<button id="przycisk">Wyswietl dane</button>
 		<button onclick="saveData()">Zapisz dane</button>
 
-		//Parsing one xml file to json
+		<!--Parsing one xml file to json-->
 		<?php
-			$fileContents= file_get_contents("http://planzajec.uek.krakow.pl/index.php?typ=G&id=83731&okres=1&xml");
+			$fileContents= file_get_contents("http://planzajec.uek.krakow.pl/index.php?typ=G&id=116071&okres=1&xml");
 	        $fileContents = str_replace(array("\n", "\r", "\t"), '', $fileContents);
 	        $fileContents = trim(str_replace('"', "'", $fileContents));
 	        $simpleXml = simplexml_load_string($fileContents);
@@ -35,17 +35,22 @@
 		<script>
 			// SAVING DATA IN DATABASE
 			// var containing json file
-			var data ='<?php echo $json; ?>';
+			var data =<?php echo $json; ?>;
 			// initializing database
 			var ref = new Firebase("https://projekt1-4d649.firebaseio.com/web/saving-data/fireblog");
 			// saving data to database
 			function saveData(){
-				var usersRef = ref.child("users");
+				var usersRef = ref.child("scheduler5");
 				usersRef.set(data);
 			}
 
 
 			// PRINTING DATA
+			// compresing string before storing in localStorage    
+			localStorage.setItem('dataString', JSON.stringify(data));
+			// decompresing item in localStorage
+			var string = localStorage.getItem('dataString');
+			// running function onclick (jquery)
 			$(document).ready(function() {
 				$("#przycisk").click(function(event){
 					$("#paragraf").text(string);
