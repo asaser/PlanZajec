@@ -32,15 +32,18 @@
 -->
 		
 		<script>
-			var dataFromPHP;
+			//var dataFromPHP;
 			var countRows = 0;
 			// initializing database
 			var ref = new Firebase("https://projekt1-4d649.firebaseio.com/web/saving-data/fireblog");
-			var usersRef = ref.child("all2");
+			//var i = 2;
+			var usersRef = ref.child("all");
 
 		    // SAVING DATA IN DATABASE
-			function saveData(){
-				usersRef.set(dataFromPHP);
+			function saveData(i, dataFromPHP){
+				var multiRef = ref.child(i);
+				multiRef.set(dataFromPHP);
+				return false;
 			}
 
 			// COUNTING SCHEDULES IN DATABASE
@@ -58,18 +61,18 @@
 				});
 			}
 			
-
+			var tblId = [];
 			// RETRIVING DATA (IDs) FROM DATABASE
 			function getIDs(){
 				//var tblId = [];
 				//countSchedules();
 				for (i = 0; i < countRows; i++) {
 					ref.child("all/zasob/" + i + "/@attributes/id").on("value", function(snapshot) {
-					  localStorage.setItem(i, snapshot.val());
-					  //tblId[i] = snapshot.val();
-					  //console.log(snapshot.val());
+					  	localStorage.setItem(i, snapshot.val());
+					  	tblId[i] = snapshot.val();
+					  	//console.log(snapshot.val());
 					}, function (errorObject) {
-					  console.log("The read failed: " + errorObject.code);
+					  	console.log("The read failed: " + errorObject.code);
 					});
 				}
 				//return tblId;
@@ -77,18 +80,29 @@
 
 			// RUNNING PHP PARSER
 			function runParserAll(){
-				//countSchedules();
-				//getIDs();
-				$.post(
-				    'parser.php',
-				    { iterations: localStorage.getItem("21")},
-				    function(dataPHP) {
-				    	console.log("PHP running " + dataPHP);
-				    	dataFromPHP = dataPHP;
-				    },
-				    'json'
-				);
+				var i = 0;
+				$.each(tblId,function(i){
+		      		
+			        console.log("FOR RUNNING!!!!!!!!!  " + i);
+			        var dataFromPHP;
+					$.post(
+					    'parser.php',
+					    { iterations: localStorage.getItem(i)},
+					    function(dataPHP) {
+					    	console.log("PHP RUNNING!!!!!!!!!  " + i + "    " + JSON.stringify(dataPHP));
+					    	dataFromPHP = dataPHP;
+					    	saveData(i, dataFromPHP); //saving data in directories counted from 0 to 3000
+					    	//saveData(localStorage.getItem(i), dataFromPHP); //saving data in directories named by ID of schedule
+					    },
+					    'json'
+					);
+
+					console.log("PHP data from " + JSON.stringify(dataFromPHP));
+
+				});	
 			}
+
+
 /*
 			// SAVING IN LOCAL STORAGE AND PRINTING ON SCRREEN //not needed now
 			// var containing json file
