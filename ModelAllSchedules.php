@@ -14,7 +14,7 @@
 		<button onclick="getIDs()">Zapisz id w pamięci lokalnej</button>
 		<button onclick="runParserAll()">Uruchom parser wszystkich planów</button>
 		<button onclick="saveData()">Zapisz dane do bazy</button>
-		<button onclick="printData()">Odtwórz numery id w konsoli</button>
+		<button onclick="runActualization()">Uruchom aktualizację bazy danych</button>
 		<!--<button id="przycisk">Wyswietl dane</button>-->
 		<!--<button onclick="xmlToJson()">Parsuj</button>-->
 		
@@ -32,23 +32,49 @@
 -->
 		
 		<script>
+			
 			//var dataFromPHP;
 			var countRows = 0;
 			// initializing database
-			var ref = new Firebase("https://projekt1-4d649.firebaseio.com/web/saving-data/fireblog");
-			//var i = 2;
-			var usersRef = ref.child("all");
+			var ref = new Firebase("https://projekt1-4d649.firebaseio.com/PlanZajec");
+			var usersRef = ref.child("listOfAll");
+
+			// RUNNING PROCESS OF SAVING ALL DATA TO DATABASE USING CALLBACK FUNCTIONS TO KEEP ADEQUATE SEQUENCE
+			function runActualization(){
+				saveAllIDs(saveFirstData);
+			}
+
+			// READING ALL DATA WITH IDS OF SCHEDULES WHICH IS TO BE SAVED
+			function saveAllIDs(callback){
+				$.post(
+				    'parser.php',
+				    { iterations: ""},
+				    function(dataPHP) {
+				    	//console.log("PHP RUNNING!!!!!!!!!  " + JSON.stringify(dataPHP));
+				    	dataFromPHP = dataPHP;
+				    	callback(dataFromPHP, countSchedules); //saving data in directories counted from 0 to 3000
+				    	//saveData(localStorage.getItem(i), dataFromPHP); //saving data in directories named by ID of schedule
+				    },
+				    'json'
+				);
+			}
+			
+
+			// SAVING MAIN DATA IN DATABASE (IDS OF SCHEDULES)
+			function saveFirstData(dataFromPHP, callback){
+				usersRef.set(dataFromPHP);
+				callback(getIDs);
+			}
 
 		    // SAVING DATA IN DATABASE
 			function saveData(i, dataFromPHP){
 				var multiRef = ref.child(i);
 				multiRef.set(dataFromPHP);
-				return false;
 			}
 
 			// COUNTING SCHEDULES IN DATABASE
 			//counting rows in order to know how many schedules and ids are stored (id numbers are needed to access all schedules)
-			function countSchedules() {
+			function countSchedules(callback) {
 				ref.child("all/zasob/").on("child_added", function(snap) {
 				  	countRows++;
 				  	console.log("added", snap.key());
@@ -59,11 +85,12 @@
 				  	console.log("rows number", countRows);
 				  	console.log("Snap length", Object.keys(snap.val()).length);
 				});
+				callback(runParserAll);
 			}
 			
 			var tblId = [];
 			// RETRIVING DATA (IDs) FROM DATABASE
-			function getIDs(){
+			function getIDs(callback){
 				//var tblId = [];
 				//countSchedules();
 				for (i = 0; i < countRows; i++) {
@@ -76,6 +103,7 @@
 					});
 				}
 				//return tblId;
+				runParserAll();
 			}
 
 			// RUNNING PHP PARSER
@@ -89,7 +117,7 @@
 					    'parser.php',
 					    { iterations: localStorage.getItem(i)},
 					    function(dataPHP) {
-					    	console.log("PHP RUNNING!!!!!!!!!  " + i + "    " + JSON.stringify(dataPHP));
+					    	//console.log("PHP RUNNING!!!!!!!!!  " + i + "    " + JSON.stringify(dataPHP));
 					    	dataFromPHP = dataPHP;
 					    	saveData(i, dataFromPHP); //saving data in directories counted from 0 to 3000
 					    	//saveData(localStorage.getItem(i), dataFromPHP); //saving data in directories named by ID of schedule
@@ -97,7 +125,7 @@
 					    'json'
 					);
 
-					console.log("PHP data from " + JSON.stringify(dataFromPHP));
+					//console.log("PHP data from " + JSON.stringify(dataFromPHP));
 
 				});	
 			}
