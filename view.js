@@ -1,6 +1,6 @@
 var view = {
 		display: function (data) {
-			// create new data view to be displayed
+									// create new data view to be displayed
 			var elem, text, i;
 			this.clear();
 			for (i = 0; i < data.length; i++) {
@@ -12,13 +12,8 @@ var view = {
 				document.getElementById('dataview').appendChild(elem);
 			}
 		},
-		clear: function () {
-			// remove old data
-			var dataView = document.getElementById('dataview');
-			while (dataView.firstChild) {
-				dataView.removeChild(dataView.firstChild);
-			}
-		},
+		
+		
 		addCurrency: function () {
 			var currency = {
 					code: document.getElementById('code').value,
