@@ -8,10 +8,14 @@
         <script src="model.js"></script>
 		<script src="view.js"></script>
 		<script src="controller.js"></script>
-		<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
-		<script src="lib/jquery-3.1.1.min.js"></script>
+		<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>  
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
 </head>
 <body>
+
 	<table border="0" width="100%" cellspacing="0" cellpadding="0" background="images/toptlo.gif">
 		<tr valign="top">
 			<td width="50%" height="89">
@@ -21,7 +25,7 @@
 	
 	<table border="0" width="100%" cellspacing="0" cellpadding="0">
 	
-	<tr>
+	<tr>	
 	<td width="184px" background="images/tlo.gif" valign="top">
 		<div id="mySidenav" class="sidenav">
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -40,33 +44,42 @@
 	{
 		document.getElementById("mySidenav").style.width = "0";
 	}
-</script>
-
+	</script>
 	</td>
 	
     <td valign="middle"><br>
 	<h3><center>Strona internetowa przeznaczona do wyszukiwania informacji dotyczących:
 	<br>zajęć, wykładowców itd. na Uniwersytecie Ekonomicznym w Krakowie</center></h3><br>
 	<div class="grupa"><center><h1>Szukaj:</h1></center></div>
-	<div class="kategorie">	
-	<form>
-		<input type="text" name="search" id="searchingField" placeholder="Search ..."><input type="button" value="Szukaj" onclick="view.find('SJO-AdA006B2')">	<br><br><br><br>
-	</div>	
-	</form>
+	
+	<form class="navbar-form navbar-left" role="search">
+		<div class="form-group">
+		<input type="text" class="form-control" placeholder="Search ...">
+		</div>
+		<button type="submit" class="btn btn-default">Szukaj</button>
+	</form><br><br><br><br>
 	
 	<div class="znalezione"><center><h1>Wynik szukania:</h1></center></div>
-	<div class="found" id="resultsView" onload="controller.updateView('SJO-AdA006B2')">	
-	<form>
-		<input type="text" name="grupa" placeholder="Wyniki ...">	<br><br><br><br><br><br><br><br><br><br>
+	<div class="found" id="resultsView" onload="controller.updateView('SJO-EkA042B2')">	
+	
+	<form class="navbar-form navbar-left" role="search">
+		<div class="form-group">
+		<input type="text" class="form-control" placeholder="Wyniki ...">			<br><br><br><br><br><br><br><br><br><br>
+		</div>
 	</form>
+
 	</div>		
 	</td>
 							
 	</div>
 	</tr>
 </table>
+
 <script>
 	var ref = new Firebase("https://projekt1-4d649.firebaseio.com/PlanZajec");
 </script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
 </body>		
 </html>
