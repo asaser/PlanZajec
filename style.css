@@ -98,7 +98,7 @@ BODY{
 		margin-left:20px
 	}
 	
-	input[type=text] 
+	.navbar-form[type=text] 
 	{
 		width: 200px;
 		box-sizing: border-box;
@@ -106,7 +106,6 @@ BODY{
 		border-radius: 4px;
 		font-size: 16px;
 		background-color: white;
-		background-image: url('searchicon.png');
 		background-position: 10px 10px; 
 		background-repeat: no-repeat;
 		padding: 12px 20px 12px 40px;
@@ -116,7 +115,7 @@ BODY{
 
 	input[type=text]:focus
 	{
-		width: 50%;
+		width: 100%%;
 	}
 	
 	
@@ -169,3 +168,4 @@ BODY{
 		.sidenav {padding-top: 15px;}
 		.sidenav a {font-size: 18px;}
 	}
+	
