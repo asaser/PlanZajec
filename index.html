@@ -5,11 +5,13 @@
         <title>UEK Plan Zajęć</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="style.css"> 
+		<script src="lib/jquery-3.1.1.min.js"></script>
         <script src="model.js"></script>
 	<script src="view.js"></script>
 	<script src="controller.js"></script>
 	<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
-	<script src="lib/jquery-3.1.1.min.js"></script>
+	
+	<script src="js/bootstrap.min.js"></script>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -55,13 +57,14 @@
 	
 	<form class="navbar-form navbar-left" role="search">
 		<div class="form-group">
-		<input type="text" class="form-control" placeholder="Search ...">
+		<input type="text" id="searchingField" class="form-control" placeholder="Search ...">
 		</div>
-		<button type="submit" class="btn btn-default">Szukaj</button>
+		<input type="button" class="btn btn-default" value="Szukaj" onclick="view.find('SJO-AdA006B2')">
 	</form><br><br><br><br>
 	
+	
 	<div class="znalezione"><center><h1>Wynik szukania:</h1></center></div>
-	<div class="found" id="resultsView" onload="controller.updateView('SJO-EkA042B2')">	
+	<div class="found" id="resultsView" onload="controller.updateView('SJO-AdA006B2')">	
 	
 	<form class="navbar-form navbar-left" role="search">
 		<div class="form-group">
