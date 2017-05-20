@@ -4,74 +4,68 @@
 <head>
         <title>UEK Plan Zajęć</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="style.css">   
+        <link rel="stylesheet" type="text/css" href="style.css"> 
+        <script src="model.js"></script>
+		<script src="view.js"></script>
+		<script src="controller.js"></script>
+		<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>  
 </head>
 <body>
 	<table border="0" width="100%" cellspacing="0" cellpadding="0" background="images/toptlo.gif">
 		<tr valign="top">
 			<td width="50%" height="89">
-			<h1 class="logo"><center>UEK Plan Zajęć</center></h1>
+			<h1 class="logo"><center>Wyszukiwarka Planu Zajęć UEK</center></h1>
 		</tr>
 	</table>
 	
 	<table border="0" width="100%" cellspacing="0" cellpadding="0">
+	
 	<tr>
-		<td width="184px" background="images/tlo.gif" valign="top">
-		<img border="0" src="images/menu.gif" width="184" height="39"><br>				
-				
-		<div class="container"">
-			<form action="TUTAJ BĘDZIE MOŻNA WSTAWIĆ CONTROLLER">
-			<div class="form-group">
-				<label for="exampleInput"><h1>Wyszukaj</h1></label>
-		<input class="form-control" placeholder="Wprowadź tekst" name="exampleInput">
-			</div>
+	<td width="184px" background="images/tlo.gif" valign="top">
+		<div id="mySidenav" class="sidenav">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<a href="#">Authors</a>
 		</div>
-		</td>
-			
-    <td valign="middle"><br>
-	<div class="grupa"><center><h1>Grupy</h1></center></div>
-	<div class="kategorie">
-	<a href="index.php?typ=G&amp;grupa=*%20INNE%20*">INNE</a> 
-	<a href="index.php?typ=G&amp;grupa=*BPZ*">BPZ</a> 
-	<a href="index.php?typ=G&amp;grupa=*Centrum%20J%C4%99zykowe*">Centrum Językowe</a>
-	<a href="index.php?typ=G&amp;grupa=*Krakowska%20Szko%C5%82a%20Biznesu*">Krakowska Szkoła Biznesu</a>
-	<a href="index.php?typ=G&amp;grupa=*Studia%20Doktoranckie*">Studia Doktoranckie</a>
-	<a href="index.php?typ=G&amp;grupa=*Studia%20Podyplomowe*">Studia Podyplomowe</a>
-	<a href="index.php?typ=G&amp;grupa=*Studium%20Doskonalenia%20Dydaktyki%20Akademickiej*">Studium Doskonalenia Dydaktyki Akademickiej</a> 
-	<a href="index.php?typ=G&amp;grupa=*Studium%20Pedagogiczne*">Studium Pedagogiczne</a>
-	<a href="index.php?typ=G&amp;grupa=*SWFiS*">SWFiS</a> 
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Administracja">Kraków Administracja</a>
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Analityka%20Gospodarcza">Kraków Analityka Gospodarcza</a>
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Ekonomia">Kraków Ekonomia</a>
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Europeistyka">Kraków Europeistyka</a>
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Finanse%20i%20Rachunkowo%C5%9B%C4%87">Kraków Finanse i Rachunkowość</a> 
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Gospod.%20i%20Administr.%20Publiczna">Kraków Gospod. i Administr. Publiczna</a> 
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Gospodarka%20Przestrzenna">Kraków Gospodarka Przestrzenna</a>
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Gospodarka%20Przestrzenna%20(in%C5%BC.)">Kraków Gospodarka Przestrzenna (inż.)</a> 
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Informatyka%20Stosowana">Kraków Informatyka Stosowana</a> 
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Informatyka%20stosowana%20(j.ang.)">Kraków Informatyka stosowana (j.ang.)</a> 
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20In%C5%BCynieria%20Organiz.i%20Zarz%C4%85dz.">Kraków Inżynieria Organiz.i Zarządz.</a>
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Logistyka%20Mi%C4%99dzynarodowa">Kraków Logistyka Międzynarodowa</a> 
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Marketing%20i%20komunikacja%20rynk.">Kraków Marketing i komunikacja rynk.</a> 
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Mi%C4%99dzynarodowe%20Stosunki%20Gospod">Kraków Międzynarodowe Stosunki Gospod</a> 
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Organizacja%20i%20Zarz%C4%85dz.-st.mene">Kraków Organizacja i Zarządz.-st.mene</a>
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Prawo">Kraków Prawo</a>
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Rachunkowo%C5%9B%C4%87%20i%20controlling">Kraków Rachunkowość i controlling</a>
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Socjologia">Kraków Socjologia</a>
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Stosunki%20Mi%C4%99dzynarodowe">Kraków Stosunki Międzynarodowe</a> 
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Towaroznawstwo">Kraków Towaroznawstwo</a> 
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Turystyka%20i%20Rekreacja">Kraków Turystyka i Rekreacja</a> 
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Zarz%C4%85dzanie">Kraków Zarządzanie</a> 
-	<a href="index.php?typ=G&amp;grupa=Krak%C3%B3w%20Zarz%C4%85dzanie%20i%20In%C5%BCynieria%20Prod.">Kraków Zarządzanie i Inżynieria Prod.</a>
-		<a href="PLIK Z BAZA DANYCH;grupa=Kraków Informatyka Stosowana">Informatyka Stosowana</a><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></td>
- </div>
- </tr>
-</table>
+		<br><br>
+		<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+		
+	<script>
+		function openNav() 
+	{
+		document.getElementById("mySidenav").style.width = "250px";
+	}
 
+		function closeNav() 
+	{
+		document.getElementById("mySidenav").style.width = "0";
+	}
+</script>
+
+	</td>
+	
+    <td valign="middle"><br>
+	<h3><center>Strona internetowa przeznaczona do wyszukiwania informacji dotyczących:
+	<br>zajęć, wykładowców itd. na Uniwersytecie Ekonomicznym w Krakowie</center></h3><br>
+	<div class="grupa"><center><h1>Szukaj:</h1></center></div>
+	<div class="kategorie">	
+	<form>
+		<input type="text" name="search" id="searchingField" placeholder="Search ..."><input type="button" value="Szukaj" onclick="view.find('SJO-EkA042B2')">	<br><br><br><br>
+	</div>	
+	</form>
+	
+	<div class="znalezione"><center><h1>Wynik szukania:</h1></center></div>
+	<div class="found" id="resultsView" onload="controller.updateView('SJO-EkA042B2')">	
+	<form>
+		<input type="text" name="grupa" placeholder="Wyniki ...">	<br><br><br><br><br><br><br><br><br><br>
+	</form>
+	</div>		
+	</td>
+							
+	</div>
+	</tr>
+</table>
+<script>
+	var ref = new Firebase("https://projekt1-4d649.firebaseio.com/PlanZajec");
+</script>
 </body>		
 </html>
-
-
-
-
-
