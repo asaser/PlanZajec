@@ -34,31 +34,38 @@
 	
 		<tr>
 			<!-- side menu -->				
-			<td width="184px" background="images/tlo.gif" valign="top">				
+			<td width="184px" background="images/tlo.gif" valign="top">	
+				<a id="bookmark-this" href="#" title="Bookmark This Page">Zapisz nazwę strony</a>
 				<div id="mySidenav" class="sidenav">
 					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 					<a href="#">Authors</a>
 				</div>
 				<br><br>
-				<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+				<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+				<button type="button" class="btn btn-success">Aktualizuj Bazę</button><br><br>
+				<h5>Aktualizacja bazy: 21.05.2017</h5>
+
 			</td>
 			
 			<!-- main content -->
-		    <td valign="middle"><br>
+		    <td valign="middle">
 				<h3><center>Strona internetowa przeznaczona do wyszukiwania informacji dotyczących:
 				<br>zajęć, wykładowców itd. na Uniwersytecie Ekonomicznym w Krakowie :)</center></h3><br>
-				<div class="grupa"><center><h1>Szukaj:</h1></center></div>
-
+				
+				<div class="grupa"><center><h1>Szukaj:</h1></center></div>				
 				<form class="navbar-form navbar-left" role="search">
 					<div class="form-group">
 					<input type="text" id="searchingField" class="form-control" placeholder="Search ...">
 					</div>
 					<input type="button" class="btn btn-default" value="Szukaj" onclick="view.find('SJO-AdA006B2')">
-				</form><br><br><br><br>
+				</form>
 				
-				<div ng-controller="myController">												
-						
-		<a id="bookmark-this" href="#" title="Bookmark This Page">Dodaj do ulubionych</a>	
+				<br><br><br>				
+				<h4>Nazwa wyszukiwanej grupy:</h4> <input type="text" name="Group">	
+				<br><br><br><br>					
+
+		  <button type="button" class="btn btn-success">Ulubiony</button>
+			
 	<h1>Search:</h1>
 	<!--
 	<input type="text" placeholder="Search names" ng-model="searchText.name" />
@@ -82,17 +89,14 @@
 		</tbody>
 	</table>
 	</div>		
-			</td>
-							
+			</td>										
 		</div>
-		</tr>
+		</tr>		
 	</table>
 
 <script>
-	// initialization of firebase
 	var ref = new Firebase("https://projekt1-4d649.firebaseio.com/PlanZajec");
 
-	//function to show and hide side menu
 	function openNav() 
 	{
 		document.getElementById("mySidenav").style.width = "250px";
@@ -101,11 +105,9 @@
 	function closeNav() 
 	{
 		document.getElementById("mySidenav").style.width = "0";
-	}
+	}	
 </script>
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	
 </body>		
 </html>
 
