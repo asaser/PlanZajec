@@ -6,7 +6,11 @@ var app = angular
         var myList;
         var scheduleName;
         $scope.text = 'KrDZ...';
-        
+        // counter of rows (schedules' IDs) in database
+        var countRows = 0;
+        // array with schedules' IDs
+        var tblId = [];
+
         $scope.showSchedule = function() {
             console.log(scheduleData + "FROM \"Pokaż\"");
             var obj = JSON.parse(scheduleData);
@@ -31,7 +35,6 @@ var app = angular
                     var obj = JSON.parse(scheduleData);
                     console.log(obj.zajecia[1].nauczyciel + " " + obj.zajecia[1].przedmiot);
                     myList = obj.zajecia;
-                    
                     return JSON.stringify(scheduleData);
                 });
             } else {
@@ -179,12 +182,14 @@ var app = angular
     }
 
     // RETRIVING DATE OF LAST ACTUAZLIZATION FROM DATABASE
-    getDateOfActualization = function(){
+    $scope.getDateOfActualization = function(){
         
         ref.child("dateOfActualization").on("value", function(snapshot) {
             //localStorage.setItem(i, snapshot.val());
-            $scope.dateOfActualization = snapshot.val();
+            var datum = snapshot.val();
+            $scope.dateOfActualization = datum; 
             $scope.$apply();
+            window.alert("Ostatnia aktualizcja była " + datum);
             //console.log(snapshot.val());
         }, function (errorObject) {
             console.log("The read failed: " + errorObject.code);
@@ -192,7 +197,7 @@ var app = angular
     
         
     }
-    getDateOfActualization();
+    //getDateOfActualization();
 
 
 });
