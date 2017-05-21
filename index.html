@@ -38,13 +38,17 @@
 				<a id="bookmark-this" href="#" title="Bookmark This Page">Zapisz nazwę strony</a>
 				<div id="mySidenav" class="sidenav">
 					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-					<a href="#">Authors</a>
+					<a href="#" onclick="Authors()">Authors</a>
+					<script>
+						function Authors() {
+						alert("Małgorzata Graja\nBartłomiej Korytkowski");
+						}
+					</script>				
 				</div>
 				<br><br>
 				<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 				<button type="button" class="btn btn-success">Aktualizuj Bazę</button><br><br>
 				<h5>Aktualizacja bazy: 21.05.2017</h5>
-
 			</td>
 			
 			<!-- main content -->
@@ -79,12 +83,23 @@
 			<th>Nauczyciel</th>
 			<th>Przedmiot</th>
 		</tr>
-		</thead>
+	</thead>
 		<tbody>
 		<tr ng-repeat="zajecia in myList | filter:search:exactMatch">
 			<td>{{$index + 1}}</td>
+			<td>{{zajecia.do-godz}}</td>
+			<td>{{zajecia.dzien}}</td>
 			<td>{{zajecia.nauczyciel.content}}</td>
+			<td>{{zajecia.moodle}}</td>			
+		</tr>
+		<tr ng-repeat="zajecia in myList | filter:search:exactMatch">
+			<td>{{$index + 1}}</td>
+			<td>{{zajecia.od-godz}}</td>
 			<td>{{zajecia.przedmiot}}</td>
+			<td>{{zajecia.sala}}</td>
+			<td>{{zajecia.termin}}</td>
+			<td>{{zajecia.typ}}</td>
+			<td>{{zajecia.uwagi}}</td>
 		</tr>
 		</tbody>
 	</table>
@@ -110,19 +125,3 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>		
 </html>
-
-
-
-<!-- trzeba gdzieś dodać pola:
-1) Zawierające nazwę grupy, którą wyszukiwaliśmy,
-2) Przycisk/gwiazdkę dodaj do ulubionych,
-3) Gdzieś napis z krótką informacją: Baza była aktualizowana 21.05.2017
-4) Gdzieś obok przycisk "aktualizuj bazę danych" 
-
-Ta wyszukiwarka o której mówimy(?) 
-służy do wyszukiwania w obrębie jednego
-planu zajęć konkretnej grupy. 
-W sumie można zrobić dwie wyszukiwarki, 
-tak jak mówisz: jedna do przedmiotu,  
-druga do nauczyciela, a można też dać 
-trzecią do wyszukiwania we wszystkich kolumnach-->
