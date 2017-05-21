@@ -1,7 +1,7 @@
 var app = angular
 	.module("myModule", [])
 	.controller("myController", function($scope){
-
+/*
 		var myList = [
         {
             "do-godz": "14:45",
@@ -284,9 +284,9 @@ var app = angular
             "typ": "egzamin"
         }
     ];
+*/
+		//$scope.myList = myList;
 
-		$scope.myList = myList;
-        
 
 		$scope.search = function(item) {
 			if ($scope.searchText == undefined){
@@ -298,4 +298,48 @@ var app = angular
 			}
 			return false;
 		}
+var scheduleData;
+$scope.myVar=0;
+        getSchedule = function (scheduleName) {
+            
+            if (localStorage.getItem(scheduleName) == null) {
+                    window.alert("Searching in database...\nIt may take few seconds");
+                    console.log("Searching in database...");
+                    ref.child('schedules').orderByChild('@attributes/nazwa').equalTo(scheduleName).on('child_added',  function(snapshot) {
+                    scheduleData = JSON.stringify(snapshot.val());
+                    console.log(scheduleData);
+                    window.alert("Now you can click \"Pokaż\"");
+                    var obj = JSON.parse(scheduleData);
+        console.log(obj.zajecia[1].nauczyciel + " " + obj.zajecia[1].przedmiot);
+        var myList = obj.zajecia;
+        $scope.scheduleTable = scheduleData;
+                    return JSON.stringify(scheduleData);
+                });
+            } else {
+                scheduleData = localStorage.getItem(scheduleName);
+                console.log("LOCAL: " + scheduleData);
+                return JSON.stringify(scheduleData);
+            }
+            //$scope.scheduleData = JSON.stringify(scheduleData);
+            //return JSON.stringify(scheduleData);    
+        }
+        $scope.text = 'KrDZ...';
+        $scope.submit = function() {
+            if ($scope.text) {
+                getSchedule(this.text);
+                $scope.scheduleName = this.text;
+                $scope.text = '';
+            }
+      }
+
+      $scope.showSchedule = function() {
+        console.log(scheduleData + "FROM \"Pokaż\"");
+        var obj = JSON.parse(scheduleData);
+        console.log(obj.zajecia[1].nauczyciel + " " + obj.zajecia[1].przedmiot);
+        var myList = obj.zajecia;
+        //$scope.scheduleTable = scheduleData;
+        //$scope.myVar=1;
+        $scope.myList = myList;
+
+      }
 	});

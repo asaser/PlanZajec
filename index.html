@@ -8,9 +8,9 @@
 	<script src="lib/jquery-3.1.1.min.js"></script>
 	<script src="angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
-    <script src="model.js"></script>
+    <!--<script src="model.js"></script>
 	<script src="view.js"></script>
-	<script src="controller.js"></script>
+	<script src="controller.js"></script>-->
 	<script src="app.js"></script>
 	<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -21,7 +21,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
 </head>
-<body ng-app="myModule">
+<body ng-app="myModule" ng-controller="myController">
 
 	<table border="0" width="100%" cellspacing="0" cellpadding="0" background="images/toptlo.gif">
 		<tr valign="top">
@@ -47,57 +47,63 @@
 				</div>
 				<br><br>
 				<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-				<button type="button" class="btn btn-success">Aktualizuj Bazę</button><br><br>
-				<h5>Aktualizacja bazy: 21.05.2017</h5>
+				<button type="button" class="btn btn-success" ng-click="runActualization()">Aktualizuj Bazę</button><br><br>
+				<h5>Aktualizacja bazy: {{dateOfActualization}}</h5>
 			</td>
 			
 			<!-- main content -->
 		    <td valign="middle">
 				<h3><center>Strona internetowa przeznaczona do wyszukiwania informacji dotyczących:
-				<br>zajęć, wykładowców itd. na Uniwersytecie Ekonomicznym w Krakowie :)</center></h3><br>
+				<br>zajęć, wykładowców itd. na Uniwersytecie Ekonomicznym w Krakowie</center></h3><br>
 				
 				<div class="grupa"><center><h1>Szukaj:</h1></center></div>				
-				<form class="navbar-form navbar-left" role="search">
+				<form class="navbar-form navbar-left" role="search" ng-submit="submit()">
 					<div class="form-group">
-					<input type="text" id="searchingField" class="form-control" placeholder="Search ...">
+					<input type="text" id="searchingField" class="form-control" placeholder="Search ..." ng-model="text">
 					</div>
-					<input type="button" class="btn btn-default" value="Szukaj" onclick="view.find('SJO-AdA006B2')">
+					<input type="submit" id="submit" value="Szukaj" />
 				</form>
 				
 				<br><br><br>				
-				<h4>Nazwa wyszukiwanej grupy:</h4> <input type="text" name="Group">	
+				<h4>Nazwa wyszukiwanej grupy:</h4>
+				<h4>{{scheduleName}}</h4>	
 				<br><br><br><br>					
 
-		  <button type="button" class="btn btn-success">Ulubiony</button>
+		  <button type="button" class="btn btn-success" ng-click="addScheduleToFavourite()">Ulubiony</button>
+		  <button type="button" class="btn btn-success" ng-click="showSchedule()"">Pokaż</button>
 			
 	<h1>Search:</h1>
-	<!--
-	<input type="text" placeholder="Search names" ng-model="searchText.name" />
-	<input type="text" placeholder="Search city" ng-model="searchText.city" />-->
 	<input type="text" placeholder="Przedmiot lub wykładowca" ng-model="searchText" />
+	<br>
+	<input type="text" placeholder="Przedmiot" ng-model="searchText.przedmiot" />
+	<input type="text" placeholder="Wykładowca" ng-model="searchText" />
 	<input type="checkbox" ng-model="exactMatch" />
 	<br/><br/>
 	<table>
-	<thead>
+	<thead class="thead-inverse">
 		<tr>
+			<th>No.</th>
+			<th>Od</th>
+			<th>Do</th>
+			<th>Dzień</th>
+			<th>Termin</th>
 			<th>Nauczyciel</th>
 			<th>Przedmiot</th>
+			<th>Sala</th>
+			<th>Typ</th>
+			<th>Uwagi</th>
 		</tr>
 	</thead>
 		<tbody>
 		<tr ng-repeat="zajecia in myList | filter:search:exactMatch">
 			<td>{{$index + 1}}</td>
 			<td>{{zajecia.do-godz}}</td>
-			<td>{{zajecia.dzien}}</td>
-			<td>{{zajecia.nauczyciel.content}}</td>
-			<td>{{zajecia.moodle}}</td>			
-		</tr>
-		<tr ng-repeat="zajecia in myList | filter:search:exactMatch">
-			<td>{{$index + 1}}</td>
 			<td>{{zajecia.od-godz}}</td>
+			<td>{{zajecia.dzien}}</td>
+			<td>{{zajecia.termin}}</td>
+			<td>{{zajecia.nauczyciel}}</td>				
 			<td>{{zajecia.przedmiot}}</td>
 			<td>{{zajecia.sala}}</td>
-			<td>{{zajecia.termin}}</td>
 			<td>{{zajecia.typ}}</td>
 			<td>{{zajecia.uwagi}}</td>
 		</tr>
