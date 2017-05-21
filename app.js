@@ -1,3 +1,9 @@
+"Access-Control-Allow-Origin", "*"
+
+"Access-Control-Allow-Methods", "GET, POST, PUT, DELETE"
+
+"Access-Control-Allow-Headers", "Content-Type, Accept"
+
 var app = angular
 	.module("myModule", [])
 	.controller("myController", function($scope){
@@ -5,7 +11,7 @@ var app = angular
         var scheduleData;
         var myList;
         var scheduleName;
-        $scope.text = 'KrDZ...';
+        $scope.text = 'KrDZIs3012Io';
         // counter of rows (schedules' IDs) in database
         var countRows = 0;
         // array with schedules' IDs
