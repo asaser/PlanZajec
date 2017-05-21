@@ -3,6 +3,7 @@ var app = angular
 	.controller("myController", function($scope){
 
         var scheduleData;
+        var myList;
         var scheduleName;
         $scope.text = 'KrDZ...';
         
@@ -10,7 +11,7 @@ var app = angular
             console.log(scheduleData + "FROM \"Pokaż\"");
             var obj = JSON.parse(scheduleData);
             console.log(obj.zajecia[1].nauczyciel + " " + obj.zajecia[1].przedmiot);
-            var myList = obj.zajecia;
+            myList = obj.zajecia;
             //$scope.scheduleTable = scheduleData;
             //$scope.myVar=1;
             $scope.myList = myList;
@@ -29,8 +30,8 @@ var app = angular
                     window.alert("Now you can click \"Pokaż\"");
                     var obj = JSON.parse(scheduleData);
                     console.log(obj.zajecia[1].nauczyciel + " " + obj.zajecia[1].przedmiot);
-                    var myList = obj.zajecia;
-                    $scope.scheduleTable = scheduleData;
+                    myList = obj.zajecia;
+                    
                     return JSON.stringify(scheduleData);
                 });
             } else {
