@@ -47,9 +47,13 @@
 				</div>
 				<br><br>
 				<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+				<button type="button" class="btn btn-success" ng-click="runActualization()">Sprawdź aktualność bazy danych</button><br><br>
 				<button type="button" class="btn btn-success" ng-click="runActualization()">Aktualizuj Bazę</button><br><br>
-				<h5>Aktualizacja bazy: {{dateOfActualization}}</h5>
+				<h5>Aktualizacja bazy: {{dateOfActualization}}</h5><br><br>
 			</td>
+			
+  
+</div>  
 			
 			<!-- main content -->
 		    <td valign="middle">
@@ -75,12 +79,10 @@
 	<h1>Search:</h1>
 	<input type="text" placeholder="Przedmiot lub wykładowca" ng-model="searchText" />
 	<br>
-	<input type="text" placeholder="Przedmiot" ng-model="searchText.przedmiot" />
-	<input type="text" placeholder="Wykładowca" ng-model="searchText" />
-	<input type="checkbox" ng-model="exactMatch" />
+	<input type="checkbox" ng-model="exactMatch" hint="Znajdź dokładne dopasowanie" />
 	<br/><br/>
-	<table>
-	<thead class="thead-inverse">
+	<table width="100%">
+	<thead>
 		<tr>
 			<th>No.</th>
 			<th>Od</th>
@@ -95,7 +97,7 @@
 		</tr>
 	</thead>
 		<tbody>
-		<tr ng-repeat="zajecia in myList | filter:search:exactMatch">
+		<tr ng-repeat="zajecia in myList | filter:search">
 			<td>{{$index + 1}}</td>
 			<td>{{zajecia.do-godz}}</td>
 			<td>{{zajecia.od-godz}}</td>
@@ -114,6 +116,7 @@
 		</div>
 		</tr>		
 	</table>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <script>
 	var ref = new Firebase("https://projekt1-4d649.firebaseio.com/PlanZajec");

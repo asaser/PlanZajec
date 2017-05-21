@@ -1,305 +1,23 @@
 var app = angular
 	.module("myModule", [])
 	.controller("myController", function($scope){
-/*
-		var myList = [
-        {
-            "do-godz": "14:45",
-            "dzien": "Pn",
-            "nauczyciel": {
-                "content": "mgr Paweł Prysak",
-                "moodle": -525
-            },
-            "od-godz": "13:05",
-            "przedmiot": "Analiza matematyczna i algebra liniowa",
-            "sala": "Paw.F 415",
-            "termin": "2017-05-22",
-            "typ": "ćwiczenia",
-            "uwagi": "powtarzanie przedmiotu 40 g"
-        },
-        {
-            "do-godz": "20:35",
-            "dzien": "Pn",
-            "nauczyciel": {
-                "content": "prof. UEK Paweł Wołoszyn",
-                "moodle": -1045
-            },
-            "od-godz": "18:10",
-            "przedmiot": "Pracownia programowanie",
-            "sala": "Paw.A 115 lab. Win8, Office03",
-            "termin": "2017-05-22",
-            "typ": "Wstępna rezerwacja",
-            "uwagi": "powtarzanie przedmiotu"
-        },
-        {
-            "do-godz": "09:30",
-            "dzien": "Wt",
-            "nauczyciel": {
-                "content": "dr Alicja Szczygieł",
-                "moodle": -490
-            },
-            "od-godz": "08:45",
-            "przedmiot": "Psychologia",
-            "sala": "Paw.S sala 2",
-            "termin": "2017-05-23",
-            "typ": "wykład"
-        },
-        {
-            "do-godz": "11:15",
-            "dzien": "Wt",
-            "nauczyciel": {
-                "content": "dr Alicja Szczygieł",
-                "moodle": -490
-            },
-            "od-godz": "09:35",
-            "przedmiot": "Psychologia",
-            "sala": "Paw.S sala 2",
-            "termin": "2017-05-23",
-            "typ": "wykład"
-        },
-        {
-            "do-godz": "13:00",
-            "dzien": "Wt",
-            "nauczyciel": {
-                "content": "dr Anna Pietruszka-Ortyl",
-                "moodle": -1077
-            },
-            "od-godz": "11:20",
-            "przedmiot": "Etykieta menedżera",
-            "sala": "Paw.E sala H",
-            "termin": "2017-05-23",
-            "typ": "wykład do wyboru"
-        },
-        {
-            "do-godz": "18:05",
-            "dzien": "Wt",
-            "nauczyciel": {
-                "content": "dr Janusz Stal",
-                "moodle": -218
-            },
-            "od-godz": "16:30",
-            "przedmiot": "Programowanie aplikacji webowych SPA",
-            "sala": "Paw.A 116 lab. Win8, Office03",
-            "termin": "2017-05-23",
-            "typ": "wykład do wyboru"
-        },
-        {
-            "do-godz": "19:45",
-            "dzien": "Wt",
-            "nauczyciel": {
-                "content": "dr Janusz Stal",
-                "moodle": -218
-            },
-            "od-godz": "18:10",
-            "przedmiot": "Usługi cloud computing dla przedsiębiorstw",
-            "sala": "Paw.A 116 lab. Win8, Office03",
-            "termin": "2017-05-23",
-            "typ": "wykład do wyboru"
-        },
-        {
-            "do-godz": "13:00",
-            "dzien": "Śr",
-            "nauczyciel": {
-                "content": "prof. UEK Paweł Wołoszyn",
-                "moodle": -1045
-            },
-            "od-godz": "09:35",
-            "przedmiot": "Pracownia programowanie",
-            "sala": "Paw.A 07 lab. Vista,Office07",
-            "termin": "2017-05-24",
-            "typ": "Wstępna rezerwacja",
-            "uwagi": "powtarzanie przedmiotu"
-        },
-        {
-            "do-godz": "11:15",
-            "dzien": "Cz",
-            "nauczyciel": {
-                "content": "dr Bernard Bińczycki",
-                "moodle": -928
-            },
-            "od-godz": "09:35",
-            "przedmiot": "BHP i ergonomia",
-            "sala": "30 koło kortów",
-            "termin": "2017-05-25",
-            "typ": "wykład"
-        },
-        {
-            "do-godz": "11:15",
-            "dzien": "Pt",
-            "nauczyciel": {
-                "content": "dr inż. Tadeusz Wilusz",
-                "moodle": -1041
-            },
-            "od-godz": "09:35",
-            "przedmiot": "Sieci komputerowe",
-            "sala": "Paw.A 115 lab. Win8, Office03",
-            "termin": "2017-05-26",
-            "typ": "ćwiczenia",
-            "uwagi": "powtarzanie przedmiotu 1 gr."
-        },
-        {
-            "do-godz": "14:45",
-            "dzien": "Pn",
-            "nauczyciel": {
-                "content": "mgr Paweł Prysak",
-                "moodle": -525
-            },
-            "od-godz": "13:05",
-            "przedmiot": "Analiza matematyczna i algebra liniowa",
-            "sala": "Paw.F 415",
-            "termin": "2017-05-29",
-            "typ": "ćwiczenia",
-            "uwagi": "powtarzanie przedmiotu 40 g"
-        },
-        {
-            "do-godz": "18:05",
-            "dzien": "Pn",
-            "nauczyciel": {
-                "content": "dr inż. Tadeusz Wilusz",
-                "moodle": -1041
-            },
-            "od-godz": "16:30",
-            "przedmiot": "Sieci komputerowe",
-            "sala": "Paw.A 115 lab. Win8, Office03",
-            "termin": "2017-05-29",
-            "typ": "ćwiczenia",
-            "uwagi": "powtarzanie przedmiotu 1 gr."
-        },
-        {
-            "do-godz": "20:35",
-            "dzien": "Pn",
-            "nauczyciel": {
-                "content": "prof. UEK Paweł Wołoszyn",
-                "moodle": -1045
-            },
-            "od-godz": "18:10",
-            "przedmiot": "Pracownia programowanie",
-            "sala": "Paw.A 115 lab. Win8, Office03",
-            "termin": "2017-05-29",
-            "typ": "Wstępna rezerwacja",
-            "uwagi": "powtarzanie przedmiotu"
-        },
-        {
-            "do-godz": "12:05",
-            "dzien": "Wt",
-            "nauczyciel": {
-                "content": "dr Anna Pietruszka-Ortyl",
-                "moodle": -1077
-            },
-            "od-godz": "11:20",
-            "przedmiot": "Etykieta menedżera",
-            "sala": "Paw.E sala H",
-            "termin": "2017-05-30",
-            "typ": "wykład do wyboru"
-        },
-        {
-            "do-godz": "16:25",
-            "dzien": "Wt",
-            "nauczyciel": {
-                "content": "dr Janusz Stal",
-                "moodle": -218
-            },
-            "od-godz": "14:50",
-            "przedmiot": "Programowanie systemów mobilnych",
-            "sala": "Bud.gł. Stara Aula",
-            "termin": "2017-05-30",
-            "typ": "wykład"
-        },
-        {
-            "do-godz": "17:15",
-            "dzien": "Wt",
-            "nauczyciel": {
-                "content": "dr Janusz Stal",
-                "moodle": -218
-            },
-            "od-godz": "16:30",
-            "przedmiot": "Programowanie aplikacji webowych SPA",
-            "sala": "Paw.A 116 lab. Win8, Office03",
-            "termin": "2017-05-30",
-            "typ": "wykład do wyboru"
-        },
-        {
-            "do-godz": "18:55",
-            "dzien": "Wt",
-            "nauczyciel": {
-                "content": "dr Janusz Stal",
-                "moodle": -218
-            },
-            "od-godz": "18:10",
-            "przedmiot": "Usługi cloud computing dla przedsiębiorstw",
-            "sala": "Paw.A 116 lab. Win8, Office03",
-            "termin": "2017-05-30",
-            "typ": "wykład do wyboru"
-        },
-        {
-            "do-godz": "13:00",
-            "dzien": "Śr",
-            "nauczyciel": {
-                "content": "dr inż. Tadeusz Wilusz",
-                "moodle": -1041
-            },
-            "od-godz": "11:20",
-            "przedmiot": "Programowanie systemów rozproszonych",
-            "sala": "Bibl. 443",
-            "termin": "2017-05-31",
-            "typ": "wykład"
-        },
-        {
-            "do-godz": "20:35",
-            "dzien": "Śr",
-            "nauczyciel": {
-                "content": "dr Marek Rawski",
-                "moodle": -910
-            },
-            "od-godz": "18:10",
-            "przedmiot": "",
-            "sala": "Paw.C sala F",
-            "termin": "2017-05-31",
-            "typ": "egzamin"
-        },
-        {
-            "do-godz": "10:20",
-            "dzien": "Cz",
-            "nauczyciel": {
-                "content": "dr Bernard Bińczycki",
-                "moodle": -928
-            },
-            "od-godz": "09:35",
-            "przedmiot": "BHP i ergonomia",
-            "sala": "Bibl. 441",
-            "termin": "2017-06-01",
-            "typ": "wykład"
-        },
-        {
-            "do-godz": "14:45",
-            "dzien": "Pt",
-            "nauczyciel": {
-                "content": "prof. UEK dr hab. Piotr Soja",
-                "moodle": -893
-            },
-            "od-godz": "11:20",
-            "przedmiot": "",
-            "sala": "Paw.A 115 lab. Win8, Office03",
-            "termin": "2017-06-02",
-            "typ": "egzamin"
+
+        var scheduleData;
+        var scheduleName;
+        $scope.text = 'KrDZ...';
+        
+        $scope.showSchedule = function() {
+            console.log(scheduleData + "FROM \"Pokaż\"");
+            var obj = JSON.parse(scheduleData);
+            console.log(obj.zajecia[1].nauczyciel + " " + obj.zajecia[1].przedmiot);
+            var myList = obj.zajecia;
+            //$scope.scheduleTable = scheduleData;
+            //$scope.myVar=1;
+            $scope.myList = myList;
+
         }
-    ];
-*/
-		//$scope.myList = myList;
 
 
-		$scope.search = function(item) {
-			if ($scope.searchText == undefined){
-				return true; //if anything is written in the text box, then it will show every row
-			} else {
-				if (item.nauczyciel.content.toLowerCase().indexOf($scope.searchText.toLowerCase()) != -1 || item.przedmiot.toLowerCase().indexOf($scope.searchText.toLowerCase()) != -1) {
-					return true;
-				}
-			}
-			return false;
-		}
-var scheduleData;
-$scope.myVar=0;
         getSchedule = function (scheduleName) {
             
             if (localStorage.getItem(scheduleName) == null) {
@@ -310,36 +28,170 @@ $scope.myVar=0;
                     console.log(scheduleData);
                     window.alert("Now you can click \"Pokaż\"");
                     var obj = JSON.parse(scheduleData);
-        console.log(obj.zajecia[1].nauczyciel + " " + obj.zajecia[1].przedmiot);
-        var myList = obj.zajecia;
-        $scope.scheduleTable = scheduleData;
+                    console.log(obj.zajecia[1].nauczyciel + " " + obj.zajecia[1].przedmiot);
+                    var myList = obj.zajecia;
+                    $scope.scheduleTable = scheduleData;
                     return JSON.stringify(scheduleData);
                 });
             } else {
                 scheduleData = localStorage.getItem(scheduleName);
                 console.log("LOCAL: " + scheduleData);
+                window.alert("Now you can click \"Pokaż\"");
                 return JSON.stringify(scheduleData);
             }
             //$scope.scheduleData = JSON.stringify(scheduleData);
             //return JSON.stringify(scheduleData);    
         }
-        $scope.text = 'KrDZ...';
+
+
+        
         $scope.submit = function() {
             if ($scope.text) {
                 getSchedule(this.text);
                 $scope.scheduleName = this.text;
+                scheduleName = this.text;
                 $scope.text = '';
             }
       }
 
-      $scope.showSchedule = function() {
-        console.log(scheduleData + "FROM \"Pokaż\"");
-        var obj = JSON.parse(scheduleData);
-        console.log(obj.zajecia[1].nauczyciel + " " + obj.zajecia[1].przedmiot);
-        var myList = obj.zajecia;
-        //$scope.scheduleTable = scheduleData;
-        //$scope.myVar=1;
-        $scope.myList = myList;
+      
 
-      }
-	});
+        $scope.addScheduleToFavourite = function (){
+            var scheduleToAdded = scheduleName;
+            ref.child('schedules').orderByChild('@attributes/nazwa').equalTo(scheduleToAdded).on('child_added',  function(snapshot) {
+                console.log(JSON.stringify(snapshot.val()));
+                localStorage.setItem(scheduleToAdded, JSON.stringify(snapshot.val()));
+            });
+        }
+
+
+        $scope.search = function(item) {
+            if ($scope.searchText == undefined){
+                return true; //if anything is written in the text box, then it will show every row
+            } else {
+                if (item.nauczyciel.toLowerCase().indexOf($scope.searchText.toLowerCase()) != -1 || item.przedmiot.toLowerCase().indexOf($scope.searchText.toLowerCase()) != -1) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        // RUNNING PROCESS OF SAVING ALL DATA TO DATABASE USING CALLBACK FUNCTIONS TO KEEP ADEQUATE SEQUENCE
+    $scope.runActualization = function(){
+        readAllIDs(saveFirstData);
+    }
+
+
+    // READING ALL DATA WITH IDS OF SCHEDULES WHICH IS TO BE SAVED
+    readAllIDs = function(callback){
+        $.post(
+            'parser.php',
+            { iterations: ""},
+            function(dataPHP) {
+                //console.log("PHP RUNNING!!!!!!!!!  " + JSON.stringify(dataPHP));
+                dataFromPHP = dataPHP;
+                callback(dataFromPHP, countSchedules); //saving data in directories counted from 0 to 3000
+                //saveData(localStorage.getItem(i), dataFromPHP); //saving data in directories named by ID of schedule
+            },
+            'json'
+        );
+    }
+        
+    // SAVING BASIC DATA IN DATABASE (IDS OF SCHEDULES)
+    saveFirstData = function(dataFromPHP, callback){
+        var basicRef = ref.child("all");
+        basicRef.set(dataFromPHP);
+        callback(getIDs);
+    }
+
+    // SAVING DATA IN DATABASE (SCHEDULES)
+    saveData = function (i, dataFromPHP){
+        var multiRef = ref.child("schedules/" + i);
+        multiRef.set(dataFromPHP);
+    }
+
+    // SAVING ADDITIONAL DATA ABOUT ACTUALIZATION
+    saveAdditionalInfo = function(){
+        // variables containing date of actualization and number of schedules stored
+        var dateRef = ref.child("dateOfActualization");
+        var schedulesNumRef = ref.child("numberOfRows");
+        var date = new Date();
+        var dateInString = date.getDate() + "." + (date.getMonth()+1) + "." + date.getFullYear() + "r.";
+        //saving to database
+        dateRef.set(dateInString);
+        schedulesNumRef.set(countRows);
+    }
+
+    // COUNTING SCHEDULES IN DATABASE
+    //counting rows in order to know how many schedules and ids are stored (id numbers are needed to access all schedules)
+    countSchedules = function(callback) {
+        ref.child("all/zasob/").on("child_added", function(snap) {
+            countRows++;
+            console.log("added", snap.key());
+        });
+        // length will always equal count, since snap.val() will include every child_added event
+        ref.child("all/zasob/").once("value", function(snap) {
+            console.log("initial data loaded!", Object.keys(snap.val()).length === countRows);
+            console.log("rows number", countRows);
+            console.log("Snap length", Object.keys(snap.val()).length);
+        });
+        callback(runParserAll);
+    }
+    
+    // RETRIVING DATA (IDs) FROM DATABASE
+    getIDs = function(callback){
+        for (i = 0; i < countRows; i++) {
+            ref.child("all/zasob/" + i + "/@attributes/id").on("value", function(snapshot) {
+                //localStorage.setItem(i, snapshot.val());
+                tblId[i] = snapshot.val();
+                //console.log(snapshot.val());
+            }, function (errorObject) {
+                console.log("The read failed: " + errorObject.code);
+            });
+        }
+        runParserAll();
+    }
+
+    // RUNNING PHP PARSER
+    runParserAll = function(){
+        var i = 0;
+        $.each(tblId,function(i){
+            
+            console.log("FOR RUNNING!!!!!!!!!  " + i);
+            var dataFromPHP;
+            $.post(
+                'parser.php',
+                { iterations: tblId[i]},
+                function(dataPHP) {
+                    //console.log("PHP RUNNING!!!!!!!!!  " + i + "    " + JSON.stringify(dataPHP));
+                    dataFromPHP = dataPHP;
+                    //saveData(i, dataFromPHP); //saving data in directories counted from 0 to 3000
+                    saveData(tblId[i], dataFromPHP); //saving data in directories named by ID of schedule
+                },
+                'json'
+            );
+            //console.log("PHP data from " + JSON.stringify(dataFromPHP));
+            saveAdditionalInfo();
+
+        }); 
+    }
+
+    // RETRIVING DATE OF LAST ACTUAZLIZATION FROM DATABASE
+    getDateOfActualization = function(){
+        
+        ref.child("dateOfActualization").on("value", function(snapshot) {
+            //localStorage.setItem(i, snapshot.val());
+            $scope.dateOfActualization = snapshot.val();
+            $scope.$apply();
+            //console.log(snapshot.val());
+        }, function (errorObject) {
+            console.log("The read failed: " + errorObject.code);
+        });
+    
+        
+    }
+    getDateOfActualization();
+
+
+});
