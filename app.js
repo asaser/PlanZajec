@@ -78,6 +78,14 @@ var app = angular
         $scope.search = function(item) {
             if ($scope.searchText == undefined){
                 return true; //if anything is written in the text box, then it will show every row
+            } else if (item.nauczyciel == undefined){
+                if (item.przedmiot.toLowerCase().indexOf($scope.searchText.toLowerCase()) != -1) {
+                    return true;
+                }
+            } else if (item.przedmiot == undefined){
+                if (item.nauczyciel.toLowerCase().indexOf($scope.searchText.toLowerCase()) != -1) {
+                    return true;
+                }
             } else {
                 if (item.nauczyciel.toLowerCase().indexOf($scope.searchText.toLowerCase()) != -1 || item.przedmiot.toLowerCase().indexOf($scope.searchText.toLowerCase()) != -1) {
                     return true;

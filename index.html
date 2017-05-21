@@ -98,7 +98,7 @@
 		<tbody>
 		<tr ng-repeat="zajecia in myList | filter:search">
 			<td>{{$index + 1}}</td>
-			<td>{{zajecia.do-godz}}</td>
+			<td>{{zajecia.do-godz | date:string}}</td>
 			<td>{{zajecia.od-godz}}</td>
 			<td>{{zajecia.dzien}}</td>
 			<td>{{zajecia.termin}}</td>
