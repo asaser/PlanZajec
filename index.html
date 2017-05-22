@@ -18,6 +18,50 @@
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<style>
+.pn {
+    color:white;
+    background-color:lightblue;
+    padding:20px;
+    font-family:"Courier New";
+}
+.wt {
+    color:white;
+    background-color:lightskyblue;
+    padding:20px;
+    font-family:"Courier New";
+}
+.sr {
+    color:white;
+    background-color:lightseagreen;
+    padding:20px;
+    font-family:"Courier New";
+}
+.cz {
+    color:white;
+    background-color:seagreen;
+    padding:20px;
+    font-family:"Courier New";
+}
+.pt {
+    color:white;
+    background-color:green;
+    padding:20px;
+    font-family:"Courier New";
+}
+.sb {
+    color:white;
+    background-color:sienna;
+    padding:20px;
+    font-family:"Courier New";
+}
+.nd {
+    color:white;
+    background-color:saddlebrown;
+    padding:20px;
+    font-family:"Courier New";
+}
+</style>
 
 </head>
 <body ng-app="myModule" ng-controller="myController">
@@ -67,7 +111,7 @@
 				<div class="grupa"><center><h1>Szukaj:</h1></center></div>				
 				<form class="navbar-form navbar-left" role="search" ng-submit="submit()">
 					<div class="form-group">
-					<input type="text" id="searchingField" class="form-control" placeholder="Search ..." ng-model="text">
+					<input type="text" id="searchingField" class="form-control" placeholder="Numer grupy..." ng-model="text">
 					</div>
 					<input type="submit" id="submit" value="Szukaj" />
 				</form>
@@ -80,30 +124,30 @@
 		  <button type="button" class="btn btn-success" ng-click="addScheduleToFavourite()">Ulubiony</button>
 		  <button type="button" class="btn btn-success" ng-click="showSchedule()"">Pokaż</button>
 			
-	<h1>Search:</h1>
+	<h1>Filtrowanie planu zajęć po przedmiocie lub nazwisku nauczyciela:</h1>
 	<input type="text" placeholder="Przedmiot lub wykładowca" ng-model="searchText" />
 	<br>
 	<input type="checkbox" ng-model="exactMatch" hint="Znajdź dokładne dopasowanie" />
 	<br/><br/>
-	<table width="100%">
+	<table width="100%" >
 	<thead>
 		<tr>
-			<th style="width:2%;" bgcolor="#00FF00">No.</th>
-			<th style="width:2%;" bgcolor="#19FF01">Od</th>
-			<th style="width:2%;" bgcolor="#20BF02">Do</th>
-			<th style="width:2%;" bgcolor="#30FC03">Dzień</th>
-			<th style="width:6%;" bgcolor="#40FF94">Termin</th>
-			<th style="width:5%;" bgcolor="#50F405">Nauczyciel</th>
-			<th style="width:10%;" bgcolor="#65FF06">Przedmiot</th>
-			<th style="width:6%;" bgcolor="#70F407">Sala</th>
-			<th style="width:6%;" bgcolor="#80FA08">Typ</th>
-			<th style="width:6%;" bgcolor="#901F09">Uwagi</th>
+			<th style="width:2%;" bgcolor="#556B2F">No.</th>
+			<th style="width:2%;" bgcolor="#8FBC8F">Od</th>
+			<th style="width:2%;" bgcolor="#BDB76B">Do</th>
+			<th style="width:2%;" bgcolor="#B8860B">Dzień</th>
+			<th style="width:6%;" bgcolor="#BDB76B">Termin</th>
+			<th style="width:5%;" bgcolor="#8FBC8F">Nauczyciel</th>
+			<th style="width:10%;" bgcolor="#556B2F">Przedmiot</th>
+			<th style="width:6%;" bgcolor="#8FBC8F">Sala</th>
+			<th style="width:6%;" bgcolor="#BDB76B">Typ</th>
+			<th style="width:6%;" bgcolor="#B8860B">Uwagi</th>
 		</tr>
 	</thead>
 		<tbody>
-		<tr ng-repeat="zajecia in myList | filter:search" >
+		<tr ng-repeat="zajecia in myList | filter:search" ng-class="{'pn': zajecia.dzien=='Pn', 'wt': zajecia.dzien=='Wt', 'sr': zajecia.dzien=='Śr', 'cz': zajecia.dzien=='Cz', 'pt': zajecia.dzien=='Pt', 'sb': zajecia.dzien=='Sb', 'nd': zajecia.dzien=='Nd' }">
 			<td>{{$index + 1}}</td>
-			<td>{{zajecia.do-godz | date:string}}</td>
+			<td>{{zajecia.do-godz}}</td>
 			<td>{{zajecia.od-godz}}</td>
 			<td>{{zajecia.dzien}}</td>
 			<td>{{zajecia.termin}}</td>
@@ -120,7 +164,7 @@
 		</div>
 		</tr>		
 	</table>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br>
 
 <script>
 	var ref = new Firebase("https://projekt1-4d649.firebaseio.com/PlanZajec");
